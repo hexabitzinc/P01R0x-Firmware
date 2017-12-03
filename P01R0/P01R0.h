@@ -2,27 +2,27 @@
     BitzOS (BOS) V0.1.4 - Copyright (C) 2017 Hexabitz
     All rights reserved
 		
-    File Name     : H01R0.c
+    File Name     : P01R0.c
     Description   : Header file for module H01R0.
 										RGB LED (Cree CLVBA-FKA-CC1F1L1BB7R3R3)
 */
 	
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef H01R0_H
-#define H01R0_H
+#ifndef P01R0_H
+#define P01R0_H
 
 /* Includes ------------------------------------------------------------------*/
 #include "BOS.h"
-#include "H01R0_uart.h"	
-#include "H01R0_gpio.h"	
-#include "H01R0_dma.h"		
+#include "P01R0_uart.h"	
+#include "P01R0_gpio.h"	
+#include "P01R0_dma.h"		
 	
 /* Exported definitions -------------------------------------------------------*/
 
-#define	modulePN		_H01R0
+#define	modulePN		_P01R0
 
 /* Port-related definitions */
-#define	NumOfPorts		6
+#define	NumOfPorts		5
 #define P_PROG 				P2						/* ST factory bootloader UART */
 
 /* Define available ports */
@@ -31,7 +31,6 @@
 #define _P3 
 #define _P4 
 #define _P5 
-#define _P6
 
 /* Define available USARTs */
 #define _Usart1 1
@@ -39,15 +38,13 @@
 #define _Usart3 1
 #define _Usart4 1
 #define _Usart5 1
-#define _Usart6	1
 
 /* Port-UART mapping */
 #define P1uart &huart4	
 #define P2uart &huart2
-#define P3uart &huart6
-#define P4uart &huart3
-#define P5uart &huart1
-#define P6uart &huart5
+#define P3uart &huart3
+#define P4uart &huart1
+#define P5uart &huart5
 	
 /* Port Definitions */
 #define	USART1_TX_PIN		GPIO_PIN_9
@@ -80,45 +77,38 @@
 #define	USART5_RX_PORT	GPIOB
 #define	USART5_AF				GPIO_AF4_USART5
 
-#define	USART6_TX_PIN		GPIO_PIN_4
-#define	USART6_RX_PIN		GPIO_PIN_5
-#define	USART6_TX_PORT	GPIOA
-#define	USART6_RX_PORT	GPIOA
-#define	USART6_AF				GPIO_AF5_USART6
-
 /* Module-specific Definitions */
-#ifdef H01R0
-	#define _RGB_RED_PORT							GPIOA
-	#define _RGB_RED_PIN							GPIO_PIN_7
-	#define _RGB_RED_TIM_CH						TIM_CHANNEL_2
-	#define _RGB_RED_GPIO_CLK()				__GPIOA_CLK_ENABLE();
-	#define _RGB_GREEN_PORT						GPIOB
-	#define _RGB_GREEN_PIN						GPIO_PIN_0
-	#define _RGB_GREEN_TIM_CH					TIM_CHANNEL_3
-	#define _RGB_GREEN_GPIO_CLK()			__GPIOB_CLK_ENABLE();
-	#define _RGB_BLUE_PORT						GPIOB
-	#define _RGB_BLUE_PIN							GPIO_PIN_1
-	#define _RGB_BLUE_TIM_CH					TIM_CHANNEL_4
-	#define _RGB_BLUE_GPIO_CLK()			__GPIOB_CLK_ENABLE();
-	
-	#define PWM_TIMER_CLOCK			16000000
-	#define RGB_PWM_FREQ				24000
-	#define RGB_PWM_PERIOD			((float) (1/RGB_PWM_FREQ) )
-#endif
+#define _RGB_RED_PORT							GPIOA
+#define _RGB_RED_PIN							GPIO_PIN_7
+#define _RGB_RED_TIM_CH						TIM_CHANNEL_2
+#define _RGB_RED_GPIO_CLK()				__GPIOA_CLK_ENABLE();
+#define _RGB_GREEN_PORT						GPIOB
+#define _RGB_GREEN_PIN						GPIO_PIN_0
+#define _RGB_GREEN_TIM_CH					TIM_CHANNEL_3
+#define _RGB_GREEN_GPIO_CLK()			__GPIOB_CLK_ENABLE();
+#define _RGB_BLUE_PORT						GPIOB
+#define _RGB_BLUE_PIN							GPIO_PIN_1
+#define _RGB_BLUE_TIM_CH					TIM_CHANNEL_4
+#define _RGB_BLUE_GPIO_CLK()			__GPIOB_CLK_ENABLE();
+
+#define PWM_TIMER_CLOCK			16000000
+#define RGB_PWM_FREQ				24000
+#define RGB_PWM_PERIOD			((float) (1/RGB_PWM_FREQ) )
+
 
 /* Module_Status Type Definition */  
 typedef enum 
 {
-  H01R0_OK = 0,
-	H01R0_ERR_UnknownMessage,
-  H01R0_ERR_WrongColor,
-	H01R0_ERR_WrongIntensity,
-	H01R0_ERROR = 255
+  P01R0_OK = 0,
+	P01R0_ERR_UnknownMessage,
+  P01R0_ERR_WrongColor,
+	P01R0_ERR_WrongIntensity,
+	P01R0_ERROR = 255
 } Module_Status;
 
 /* Indicator LED */
-#define _IND_LED_PORT		GPIOA
-#define _IND_LED_PIN		GPIO_PIN_11
+#define _IND_LED_PORT		GPIOB
+#define _IND_LED_PIN		GPIO_PIN_15
 
 /* Color Enumerations */
 enum BasicColors{BLACK=1, WHITE, RED, BLUE, YELLOW, CYAN, MAGENTA, GREEN};
@@ -135,7 +125,6 @@ extern UART_HandleTypeDef huart2;
 extern UART_HandleTypeDef huart3;
 extern UART_HandleTypeDef huart4;
 extern UART_HandleTypeDef huart5;
-extern UART_HandleTypeDef huart6;
 
 /* Define UART Init prototypes */
 extern void MX_USART1_UART_Init(void);
@@ -143,7 +132,6 @@ extern void MX_USART2_UART_Init(void);
 extern void MX_USART3_UART_Init(void);
 extern void MX_USART4_UART_Init(void);
 extern void MX_USART5_UART_Init(void);
-extern void MX_USART6_UART_Init(void);
 
 extern TIM_HandleTypeDef htim3;
 	
@@ -196,6 +184,6 @@ extern const CLI_Command_Definition_t sweepCommandDefinition;
 extern const CLI_Command_Definition_t dimCommandDefinition;
 
 
-#endif /* H01R0_H */
+#endif /* P01R0_H */
 
 /************************ (C) COPYRIGHT HEXABITZ *****END OF FILE****/
