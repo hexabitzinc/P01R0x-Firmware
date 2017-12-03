@@ -63,7 +63,7 @@ portBASE_TYPE dimCommand( int8_t *pcWriteBuffer, size_t xWriteBufferLen, const i
 const CLI_Command_Definition_t onCommandDefinition =
 {
 	( const int8_t * ) "on", /* The command string to type. */
-	( const int8_t * ) "(H01R0) on:\r\n Turn RGB LED on (white color) at a specific intensity (0-100%) (1st par.)\r\n\r\n",
+	( const int8_t * ) "(P01R0) on:\r\n Turn RGB LED on (white color) at a specific intensity (0-100%) (1st par.)\r\n\r\n",
 	onCommand, /* The function to run. */
 	1 /* One parameter is expected. */
 };
@@ -72,7 +72,7 @@ const CLI_Command_Definition_t onCommandDefinition =
 const CLI_Command_Definition_t offCommandDefinition =
 {
 	( const int8_t * ) "off", /* The command string to type. */
-	( const int8_t * ) "(H01R0) off:\r\n Turn RGB LED off\r\n\r\n",
+	( const int8_t * ) "(P01R0) off:\r\n Turn RGB LED off\r\n\r\n",
 	offCommand, /* The function to run. */
 	0 /* No parameters are expected. */
 };
@@ -81,7 +81,7 @@ const CLI_Command_Definition_t offCommandDefinition =
 const CLI_Command_Definition_t colorCommandDefinition =
 {
 	( const int8_t * ) "color", /* The command string to type. */
-	( const int8_t * ) "(H01R0) color:\r\n Set RGB LED color (1st par.) at a specific intensity (0-100%) (2nd par.)\n\rRegistered colors are:\
+	( const int8_t * ) "(P01R0) color:\r\n Set RGB LED color (1st par.) at a specific intensity (0-100%) (2nd par.)\n\rRegistered colors are:\
 \r\nblack, white, red, blue, green, yellow, cyan, and magenta \r\n\r\n",
 	colorCommand, /* The function to run. */
 	2 /* Two parameters are expected. */
@@ -91,7 +91,7 @@ const CLI_Command_Definition_t colorCommandDefinition =
 const CLI_Command_Definition_t RGBCommandDefinition =
 {
 	( const int8_t * ) "rgb", /* The command string to type. */
-	( const int8_t * ) "(H01R0) RGB:\r\n Set RGB LED red (1st par.), green (2nd par.), and blue (3rd par.) values (0-255) at a specific intensity (0-100%) (4th par.)\r\n\r\n",
+	( const int8_t * ) "(P01R0) RGB:\r\n Set RGB LED red (1st par.), green (2nd par.), and blue (3rd par.) values (0-255) at a specific intensity (0-100%) (4th par.)\r\n\r\n",
 	RGBCommand, /* The function to run. */
 	4 /* Four parameters are expected. */
 };
@@ -100,7 +100,7 @@ const CLI_Command_Definition_t RGBCommandDefinition =
 const CLI_Command_Definition_t toggleCommandDefinition =
 {
 	( const int8_t * ) "toggle", /* The command string to type. */
-	( const int8_t * ) "(H01R0) toggle:\r\n Toggle RGB LED (white color) at a specific intensity (0-100%) (1st par.)\r\n\r\n",
+	( const int8_t * ) "(P01R0) toggle:\r\n Toggle RGB LED (white color) at a specific intensity (0-100%) (1st par.)\r\n\r\n",
 	toggleCommand, /* The function to run. */
 	1 /* One parameter is expected. */
 };
@@ -109,7 +109,7 @@ const CLI_Command_Definition_t toggleCommandDefinition =
 const CLI_Command_Definition_t pulseColorCommandDefinition =
 {
 	( const int8_t * ) "pulsecolor", /* The command string to type. */
-	( const int8_t * ) "(H01R0) pulseColor:\r\n Send a pulse on RGB LED using a specific color (1st par.), pulse period (ms) (2nd par.), pulse duty cycle (ms) (3rd par.) \
+	( const int8_t * ) "(P01R0) pulseColor:\r\n Send a pulse on RGB LED using a specific color (1st par.), pulse period (ms) (2nd par.), pulse duty cycle (ms) (3rd par.) \
 and pulse repeat times (4th par.) (type 'inf' for periodic signal)\r\n\r\n",
 	pulseColorCommand, /* The function to run. */
 	4 /* Four parameters are expected. */
@@ -119,7 +119,7 @@ and pulse repeat times (4th par.) (type 'inf' for periodic signal)\r\n\r\n",
 const CLI_Command_Definition_t pulseRGBCommandDefinition =
 {
 	( const int8_t * ) "pulsergb", /* The command string to type. */
-	( const int8_t * ) "(H01R0) pulseRGB:\r\n Send a pulse on RGB LED using RGB values (1st, 2nd and 3rd par.) (0-255), pulse period (ms) (4th par.), pulse duty cycle (ms) (5th par.) \
+	( const int8_t * ) "(P01R0) pulseRGB:\r\n Send a pulse on RGB LED using RGB values (1st, 2nd and 3rd par.) (0-255), pulse period (ms) (4th par.), pulse duty cycle (ms) (5th par.) \
 and pulse repeat times (6th par.) (type 'inf' for periodic signal)\r\n\r\n",
 	pulseRGBCommand, /* The function to run. */
 	6 /* Six parameters are expected. */
@@ -129,7 +129,7 @@ and pulse repeat times (6th par.) (type 'inf' for periodic signal)\r\n\r\n",
 const CLI_Command_Definition_t sweepCommandDefinition =
 {
 	( const int8_t * ) "sweep", /* The command string to type. */
-		( const int8_t * ) "(H01R0) sweep:\r\n Perform color sweep on RGB LED using a specific sweep mode ('basic': sweep basic color only, 'fine': sweep all colors) (1st par.), sweep period (ms) (2nd par.) \
+		( const int8_t * ) "(P01R0) sweep:\r\n Perform color sweep on RGB LED using a specific sweep mode ('basic': sweep basic color only, 'fine': sweep all colors) (1st par.), sweep period (ms) (2nd par.) \
 and sweep repeat times (3rd par.) (type 'inf' for periodic signal)\r\n\r\n",
 	sweepCommand, /* The function to run. */
 	3 /* Three parameters are expected. */
@@ -139,7 +139,7 @@ and sweep repeat times (3rd par.) (type 'inf' for periodic signal)\r\n\r\n",
 const CLI_Command_Definition_t dimCommandDefinition =
 {
 	( const int8_t * ) "dim", /* The command string to type. */
-		( const int8_t * ) "(H01R0) dim:\r\n Dim a specific color (1st par.) on RGB LED using a specific dim mode ('up', 'upwait', 'down', 'downwait', 'updown', 'downup', 'updownwait', 'downupwait') (2nd par.), \
+		( const int8_t * ) "(P01R0) dim:\r\n Dim a specific color (1st par.) on RGB LED using a specific dim mode ('up', 'upwait', 'down', 'downwait', 'updown', 'downup', 'updownwait', 'downupwait') (2nd par.), \
 sweep period (ms) (3rd par.), wait time (ms) (4th par.) and dim repeat times (5th par.) (type 'inf' for periodic signal)\r\n\r\n",
 	dimCommand, /* The function to run. */
 	5 /* Five parameters are expected. */
