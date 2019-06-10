@@ -95,6 +95,7 @@
 #define RGB_PWM_FREQ				24000
 #define RGB_PWM_PERIOD			((float) (1/RGB_PWM_FREQ) )
 
+#define NUM_MODULE_PARAMS		1
 
 /* Module_Status Type Definition */  
 typedef enum 
